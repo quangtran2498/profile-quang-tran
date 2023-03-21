@@ -11,5 +11,8 @@ export const textI18n = {
     skills:"textMultiLanguage.skills",
     blog:"textMultiLanguage.blog",
     services:"textMultiLanguage.services",
-    language:"textMultiLanguage.language"
+    language:"textMultiLanguage.language",
+    name:"textMultiLanguage.name",
+    job:"textMultiLanguage.job",
+    desc:"textMultiLanguage.desc"
 }

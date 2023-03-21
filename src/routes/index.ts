@@ -4,11 +4,13 @@ import Services from "../screens/services";
 import Blog from '../screens/blog';
 import Projects from '../screens/projects';
 import { pathRouter } from "./path";
+import Skills from '../screens/skills';
+import Home from '../screens/home';
 export const routesPage = [
-  // {
-  //   component: App,
-  //   path: "/",
-  // },
+  {
+    component: Home,
+    path:pathRouter.home,
+  },
   {
     component: About,
     path: pathRouter.aboutMe,
@@ -25,5 +27,8 @@ export const routesPage = [
     component: Projects,
     path:pathRouter.project,
   },
-
+  {
+    component: Skills,
+    path:pathRouter.skills,
+  },
 ];

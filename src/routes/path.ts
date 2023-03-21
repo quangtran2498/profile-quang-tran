@@ -4,5 +4,5 @@ export const pathRouter = {
     project:"/project",
     services:"/services",
     blog:"/blog",
-    
+    skills:"/skills"
 }

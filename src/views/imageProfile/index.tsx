@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => {
 const ImageProfile = () => {
   const classes = useStyles()
   return (
-    <div className={classes.containerImage}>
+    <div className={`${classes.containerImage} width-image`}>
       <img src={me} alt="me" className={classes.image} />
     </div>
   )

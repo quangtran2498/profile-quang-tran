@@ -23,7 +23,6 @@ const useStyles = makeStyles((theme) => {
   };
 });
 const ChangeLanguage = ({handleHideLanguage}:PropsI) => {
-    // console.log("123",handleHideLanguage);
     
     const { i18n } = useTranslation();
   const changeLanguage = (e:MouseEvent | any,language: string) => {

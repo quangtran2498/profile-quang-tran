@@ -1,8 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ButtonCommon from "../../components/Button/index";
 import { makeStyles } from "@mui/styles";
 import { colors } from "../../colors";
-import ArrowForward from '../../assets/svg/arrowForward';
+import ArrowForward from "../../assets/svg/arrowForward";
+import { useTranslation } from "react-i18next";
+import { textI18n } from "../../lang/languages";
+interface PropsI {
+  widthImage?:number
+}
 const useStyles = makeStyles((theme) => {
   return {
     textHello: {
@@ -22,37 +27,46 @@ const useStyles = makeStyles((theme) => {
         left: 0,
         background: colors.highLight,
         borderRadius: "10px",
-        // color:colors.highLight
       },
     },
     textDesc: {
       color: colors.textMain,
       lineHeight: "35px",
-      marginBottom:"28px"
+      marginBottom: "28px",
     },
-    btn: {
-     
+    btn: {},
+    containerContent: {
+      // width: (widthImage) => widthImage ? `${widthImage}px` : "1000",
+      display: "flex",
+      justifyContent: "center",
     },
-    containerContent:{
-      maxWidth:"550px",
-      padding:"0 50px"
-    }
+    content: {
+      maxWidth: "550px",
+      padding: "0 50px",
+
+    },
   };
 });
-const ContentHome = () => {
+const ContentHome = ({ widthImage }: PropsI) => {
   const classes = useStyles();
+  console.log(widthImage, "widthImage");
+  const { t } = useTranslation();
   return (
-    <div className={classes.containerContent}>
-      <div className={classes.textHello}>
-        <div className={`text-high-light`}>I'm quang tran</div>
-        <div className="text-main">web designer</div>
+    <div className={classes.containerContent} style={{width:`calc(100vw - ${widthImage}px)`}}>
+      <div className={classes.content}>
+        <div className={classes.textHello}>
+          <div className={`text-high-light`}>{t(textI18n.name)}</div>
+          <div className="text-main">{t(textI18n.job)}</div>
+        </div>
+        <div className={classes.textDesc}>{t(textI18n.desc)}</div>
+        <ButtonCommon
+          className={classes.btn}
+          icon={<ArrowForward />}
+          positionIconEnd={true}
+        >
+          more about me
+        </ButtonCommon>
       </div>
-      <div className={classes.textDesc}>
-        I'm a Tunisian based web designer & front‑end developer focused on
-        crafting clean & user‑friendly experiences, I am passionate about
-        building excellent software that improves the lives of those around me.
-      </div>
-      <ButtonCommon className={classes.btn} icon={<ArrowForward/>} positionIconEnd={true}> more about me</ButtonCommon>
     </div>
   );
 };
