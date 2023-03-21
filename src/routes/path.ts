@@ -3,5 +3,6 @@ export const pathRouter = {
     aboutMe:"/about",
     project:"/project",
     services:"/services",
-    language:"/language"
+    blog:"/blog",
+    
 }

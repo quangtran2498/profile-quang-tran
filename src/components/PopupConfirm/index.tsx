@@ -1,6 +1,4 @@
 import React, { useEffect } from "react";
-import Button, { ButtonTypes } from "../Button/index";
-
 export interface PopupConfirmProps {
   visible: boolean;
   children?: React.ReactNode;
@@ -15,7 +13,7 @@ export interface PopupConfirmProps {
   type?: "";
   showContactButton?: boolean;
   showIcon?: boolean;
-  okButtonType?: ButtonTypes;
+  okButtonType?: any;
   isHtmlContent?: boolean;
   popupStyle?: React.CSSProperties;
   buttonContainerStyle?: React.CSSProperties;
@@ -45,13 +43,7 @@ const PopupConfirm = (props: PopupConfirmProps) => {
       <div className="" style={styleModal}>
         <div className="">icon</div>
         <div className="">{content}</div>
-        <div className="">
-          <Button
-            onClick={onOk}
-            text={"ok"}
-            extraClassName={"w-full"}
-          />
-        </div>
+        
       </div>
     </div>
   );

@@ -1,70 +1,104 @@
-import React from 'react';
-// import loadingIcon from 'src/assets/loading.gif';
-// import throttle from 'lodash/throttle';
-// import './style.scoped.css';
-
-export enum ButtonTypes {
-  PrimaryFilled = 'primaryFilled',
-  PrimaryOutlined = 'primaryOutlined',
-  PrimaryBorderless = 'primaryBorderless',
-  PrimaryBorderless2 = 'primaryBorderless2',
-  PrimaryBorderless3 = 'primaryBorderless3',
-  SecondaryFilled = 'secondaryFilled',
-  SecondaryOutlined = 'secondaryOutlined',
-  SecondaryBorderless = 'secondaryBorderless',
-  ErrorBorderless = 'errorBorderless',
-  OutlinedNeutral = 'outlinedNeutral',
-}
-
-export enum ButtonSizes {
-  Small = 'small',
-  Normal = 'normal',
-}
-
-type ButtonProps = {
-  text: string;
-  loading?: boolean;
-  disabled?: boolean;
-  onClick?: (data?: any) => void;
-  buttonType?: ButtonTypes;
-  leftIcon?: React.ReactNode;
-  rightIcon?: React.ReactNode;
-  size?: string;
-  extraClassName?: string;
-  [propertyName: string]: any;
-};
-
-const Button = (props: ButtonProps) => {
-  const {
-    text,
-    loading = false,
-    onClick,
-    leftIcon,
-    rightIcon,
-    extraClassName,
-    ...passProps
-  } = props;
-  console.log(onClick,"onClick");
-  
-  const handleClick = (event: React.MouseEvent) => {
-    // if (loading || disabled) return;
-    !!onClick && onClick(event);
+import React from "react";
+import Button from "@mui/material/Button";
+import { makeStyles, withStyles } from "@mui/styles";
+import { colors } from "../../colors";
+const CustomBtn = withStyles((theme) => {
+  return {
+    root: {
+      "&:hover": {},
+      "&.MuiButton-root": {
+        color: "#666",
+        border: `1px solid ${colors.highLight}`,
+        padding: "0px 0px 0px 35px",
+        borderRadius: "35px",
+        fontWeight: 600,
+        fontSize: "15px",
+        "&:hover": {
+          color: "#fff",
+          "&::before": {
+            display: "block",
+            transform: "translateX(0)"
+          },
+        },
+        "&.Mui-disabled": {
+          background: "#E7E8FD",
+        },
+        "& .MuiButton-endIcon": {
+          width: "50px",
+          height: "50px",
+          borderRadius: "50%",
+          background: colors.highLight,
+          ...theme.custom?.flexBox.flexCenterCenter,
+        },
+        "&::before": {
+          display: "none",
+          content: '""',
+          position: "absolute",
+          width: "100%",
+          height: "100%",
+          top: 0,
+          left:0,
+          right: 0,
+          background: colors.highLight,
+          borderRadius: "35px",
+          zIndex: "-1",
+          transition: "all .5s",
+          transform: "translateX(100%)"
+        },
+      },
+    },
   };
+})(Button);
 
+//! type
+interface ButtonProps {
+  children: string;
+  onClick?: () => void | any;
+  style?: any;
+  className?: string;
+  disabled?: boolean;
+  type?: any;
+  icon?: React.ReactNode;
+  positionIconStart?: boolean;
+  positionIconEnd?: boolean;
+  text?: string;
+}
+const useStyles = makeStyles((theme) => {
+  return {
+    disable: {
+      background: "#E7E8FD",
+    },
+  };
+});
+const ButtonCommon = (props: ButtonProps) => {
+  //! State
+  const {
+    children,
+    onClick,
+    style,
+    className,
+    type,
+    disabled,
+    icon,
+    positionIconStart,
+    positionIconEnd,
+    ...restProps
+  } = props;
+  const typebtn = type;
+  //! Render
   return (
-    <button
-      {...passProps}
-      onClick={handleClick}
+    <CustomBtn
+      disabled={disabled}
+      onClick={onClick}
+      type={typebtn}
+      className={`${className}`}
+      style={{ ...style }}
+      startIcon={positionIconStart && icon}
+      endIcon={positionIconEnd && icon}
+      {...restProps}
     >
-      {!!leftIcon && leftIcon}
-      {loading ? (
-        <div>img</div>
-      ) : (
-        text
-      )}
-      {!!rightIcon && rightIcon}
-    </button>
+      {children}
+    </CustomBtn>
   );
 };
-
-export default Button;
+export default ButtonCommon;

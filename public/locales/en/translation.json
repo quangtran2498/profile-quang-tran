@@ -1,0 +1,12 @@
+{
+    "textMultiLanguage": {
+        "test":"test",
+        "home":"home",
+        "about":"about",
+        "projects":"projects",
+        "skills":"skills",
+        "blog":"blog",
+        "services":"services",
+        "language":"language"
+    }
+  }
