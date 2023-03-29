@@ -36,7 +36,6 @@ const useStyles = makeStyles((theme) => {
     },
     btn: {},
     containerContent: {
-      // width: (widthImage) => widthImage ? `${widthImage}px` : "1000",
       display: "flex",
       justifyContent: "center",
     },

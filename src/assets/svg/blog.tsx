@@ -2,8 +2,9 @@ import * as React from "react"
 import { colors } from "../../colors";
 import { useCheckHoverIconCatalog } from '../../providers/hoverIconCatalog';
 const BlogIcon = (props:any) => {
+  const {highLightIcon} = props
   const {hover} = useCheckHoverIconCatalog()    
-  const color = hover===5 ? colors.hoverIcon : colors.defaultIcon
+  const color = hover===5 || highLightIcon ? colors.hoverIcon : colors.defaultIcon
   return (
     <svg xmlns="http://www.w3.org/2000/svg" width={20} height={20} {...props}>
       <path

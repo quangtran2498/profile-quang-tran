@@ -3,7 +3,7 @@ import { makeStyles } from "@mui/styles";
 import TextHeader from "../components/textHeader/index";
 import { colors } from "../colors";
 import ProjectsFe from '../views/projectsFe/index';
-import ProjectsBe from '../views/projectsFe/index';
+import ProjectsBe from '../views/projectsBe/index';
 import ContainerMain from '../components/containerMain/index';
 const useStyles = makeStyles((theme) => {
   return {
@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme) => {
       ...theme.custom?.flexBox.flexCenterCenter
     },
     typeProjectsItem:{
-      fontWeight:500,
+      fontWeight:700,
       padding:"10px",
       cursor:"pointer"
     }

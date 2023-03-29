@@ -10,6 +10,7 @@ import { icons } from "../icons/index";
 import { keyframes } from "@emotion/react";
 import { useNavigate } from "react-router-dom";
 import { pathRouter } from "../routes/path";
+import { colors } from "../colors";
 const useStyles = makeStyles((theme) => {
   return {
     containerNav: {
@@ -18,8 +19,7 @@ const useStyles = makeStyles((theme) => {
       right: 0,
       top: 0,
       ...theme.custom?.flexBox.flexAlignItemsCenter,
-      height:"100vh"
-
+      height: "100vh",
     },
     containerNavSub: {
       ...theme.custom?.flexBox.flexBetweenCenter,
@@ -46,11 +46,14 @@ const useStyles = makeStyles((theme) => {
       marginBottom: "20px",
       position: "relative",
       cursor: "pointer",
-      // transition: "all .3s",
       "&:hover": {
         background: "#ffb400",
         "& div": {
-          display: "flex",
+          background: "#ffb400",
+          transform: "translateX(0)",
+        },
+        "& span": {
+          display: "block",
         },
       },
       "&::before": {
@@ -65,32 +68,37 @@ const useStyles = makeStyles((theme) => {
     },
     catalogHover: {
       position: "absolute",
-      background: "#ffb400",
-      padding: "0px 25px 0 30px",
+      padding: "0px 30px 0 30px",
       top: 0,
-      width: "100px",
+      width: "max-content",
       borderRadius: "30px 0 0 30px",
       height: "50px",
       zIndex: "-1",
       right: 27,
       ...theme.custom?.flexBox.flexAlignItemsCenter,
-      transition: "all .3s",
+      transition: "all 0.4s",
       color: "#fff",
       fontWeight: 600,
       textTransform: "uppercase",
-      display: "none",
       fontSize: "15px",
+      transform: "translateX(12%)",
     },
     containerLanguage: {
       position: "absolute",
       background: "#ffb400",
       color: "#fff",
       left: "-100px",
-      bottom: "-80px",
+      bottom: "-70px",
+      display: "none",
       borderRadius: "8px",
+
     },
     languageItem: {
       padding: "6px 60px 6px 10px",
+      fontWeight: 500,
+      "&:hover": {
+        color: colors.textMain,
+      },
     },
   };
 });
@@ -104,6 +112,7 @@ const useStyles = makeStyles((theme) => {
 // `;
 const Nav = () => {
   const [showLanguage, setShowLanguage] = React.useState<boolean>(false);
+  const [highLightPage, setHighLightPage] = React.useState<string>("/");
   const navigate = useNavigate();
   const { i18n, t } = useTranslation();
   const { hover, setHover } = useCheckHoverIconCatalog();
@@ -114,6 +123,12 @@ const Nav = () => {
     setShowLanguage(false);
     setHover(null);
   };
+  console.log(highLightPage, "highLightPage");
+
+  const onHanldeCatalog = (path: string) => {
+    navigate(path);
+    setHighLightPage(path);
+  };
 
   return (
     <div className={classes.containerNav}>
@@ -122,84 +137,105 @@ const Nav = () => {
           className={classes.catalogItem}
           onMouseMove={() => setHover(1)}
           onMouseOut={() => setHover(null)}
-          onClick={() => navigate(pathRouter.home)}
+          onClick={() => onHanldeCatalog(pathRouter.home)}
+          style={
+            pathRouter.home === window.location.pathname
+              ? { background: colors.highLight }
+              : {}
+          }
         >
-          <icons.home />
-          <div className={classes.catalogHover}>
-            <div className="">{t(textI18n.home)}</div>
-          </div>
+          <icons.home
+            highLightIcon={pathRouter.home === window.location.pathname}
+          />
+          <div className={classes.catalogHover}>{t(textI18n.home)}</div>
         </div>
         <div
           className={classes.catalogItem}
           onMouseMove={() => setHover(2)}
           onMouseOut={() => setHover(null)}
-          onClick={() => navigate(pathRouter.aboutMe)}
+          onClick={() => onHanldeCatalog(pathRouter.aboutMe)}
+          style={
+            pathRouter.aboutMe === window.location.pathname
+              ? { background: colors.highLight }
+              : {}
+          }
         >
-          <icons.about />
-          <div className={classes.catalogHover}>
-            <div className="">{t(textI18n.about)}</div>
-          </div>
+          <icons.about
+            highLightIcon={pathRouter.aboutMe === window.location.pathname}
+          />
+          <div className={classes.catalogHover}>{t(textI18n.about)}</div>
         </div>
         <div
           className={classes.catalogItem}
           onMouseMove={() => setHover(3)}
           onMouseOut={() => setHover(null)}
-          onClick={() => navigate(pathRouter.project)}
+          onClick={() => onHanldeCatalog(pathRouter.project)}
+          style={
+            pathRouter.project === window.location.pathname
+              ? { background: colors.highLight }
+              : {}
+          }
         >
-          <icons.project />
-          <div className={classes.catalogHover}>
-            <div className="">{t(textI18n.projects)}</div>
-          </div>
+          <icons.project
+            highLightIcon={pathRouter.project === window.location.pathname}
+          />
+          <div className={classes.catalogHover}>{t(textI18n.projects)}</div>
         </div>
         <div
           className={classes.catalogItem}
           onMouseMove={() => setHover(4)}
           onMouseOut={() => setHover(null)}
-          onClick={() => navigate(pathRouter.skills)}
+          onClick={() => onHanldeCatalog(pathRouter.skills)}
+          style={
+            pathRouter.skills === window.location.pathname
+              ? { background: colors.highLight }
+              : {}
+          }
         >
-          <icons.skill />
-          <div className={classes.catalogHover}>
-            <div className="">{t(textI18n.skills)}</div>
-          </div>
+          <icons.skill
+            highLightIcon={pathRouter.skills === window.location.pathname}
+          />
+          <div className={classes.catalogHover}>{t(textI18n.skills)}</div>
         </div>
         <div
           className={classes.catalogItem}
           onMouseMove={() => setHover(5)}
           onMouseOut={() => setHover(null)}
-          onClick={() => navigate(pathRouter.blog)}
+          onClick={() => onHanldeCatalog(pathRouter.blog)}
+          style={
+            pathRouter.blog === window.location.pathname
+              ? { background: colors.highLight }
+              : {}
+          }
         >
-          <icons.blog />
-          <div className={classes.catalogHover}>
-            <div className="">{t(textI18n.blog)}</div>
-          </div>
+          <icons.blog
+            highLightIcon={pathRouter.blog === window.location.pathname}
+          />
+          <div className={classes.catalogHover}>{t(textI18n.blog)}</div>
         </div>
         <div
           className={classes.catalogItem}
           onMouseMove={() => setHover(6)}
           onMouseOut={() => setHover(null)}
-          style={{ position: "relative" }}
           onClick={() => setShowLanguage(true)}
+          // style={highLightPage === window.location.pathname ? {background:colors.highLight} : {}}
         >
           <icons.language2 />
-          <div className={classes.catalogHover}>
-            <div className="">{t(textI18n.language)}</div>
-          </div>
-          {showLanguage && (
-            <span className={classes.containerLanguage}>
-              <div
-                className={classes.languageItem}
-                onClick={(e) => changeLanguage(e, "vi")}
-              >
-                Tiếng Việt
-              </div>
-              <div
-                className={classes.languageItem}
-                onClick={(e) => changeLanguage(e, "en")}
-              >
-                English
-              </div>
-            </span>
-          )}
+          <div className={classes.catalogHover}>{t(textI18n.language)}</div>
+          <span className={classes.containerLanguage}>
+            <div
+              className={classes.languageItem}
+              onClick={(e) => changeLanguage(e, "vi")}
+            >
+              Tiếng Việt
+            </div>
+            <div
+              className={classes.languageItem}
+              onClick={(e) => changeLanguage(e, "en")}
+            >
+              English
+            </div>
+          </span>
         </div>
       </div>
     </div>

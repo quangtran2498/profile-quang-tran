@@ -13,10 +13,11 @@ const CustomBtn = withStyles((theme) => {
         borderRadius: "35px",
         fontWeight: 600,
         fontSize: "15px",
+        overflow:"hidden",
         "&:hover": {
           color: "#fff",
           "&::before": {
-            display: "block",
+            background:colors.highLight,
             transform: "translateX(0)"
           },
         },
@@ -24,14 +25,15 @@ const CustomBtn = withStyles((theme) => {
           background: "#E7E8FD",
         },
         "& .MuiButton-endIcon": {
-          width: "50px",
-          height: "50px",
+          width: "46px",
+          height: "46px",
           borderRadius: "50%",
           background: colors.highLight,
           ...theme.custom?.flexBox.flexCenterCenter,
+          // background:"#fff"
         },
         "&::before": {
-          display: "none",
+          // display: "none",
           content: '""',
           position: "absolute",
           width: "100%",
@@ -39,11 +41,11 @@ const CustomBtn = withStyles((theme) => {
           top: 0,
           left:0,
           right: 0,
-          background: colors.highLight,
+          background: "transparent",
           borderRadius: "35px",
           zIndex: "-1",
           transition: "all .5s",
-          transform: "translateX(100%)"
+          transform: "translateX(100%)",
         },
       },
     },

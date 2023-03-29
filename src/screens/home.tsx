@@ -38,7 +38,6 @@ const Home = () => {
         {widthImage && 
         <ContentHome widthImage={widthImage}/>
         }
-        {/* <ContentHome widthImage={widthImage}/> */}
 
       </div>
       <div className={classes.bg}></div>
