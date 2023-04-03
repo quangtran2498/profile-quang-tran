@@ -16,7 +16,11 @@ const useStyles = makeStyles((theme) => {
     typeProjectsItem:{
       fontWeight:700,
       padding:"10px",
-      cursor:"pointer"
+      cursor:"pointer",
+      marginBottom:"16px"
+    },
+    containerProject:{
+      width:"70%"
     }
   };
 });
@@ -31,7 +35,7 @@ const Projects = () => {
         <div className={classes.typeProjectsItem} onClick={() => setActive("be")} style={active === "be" ? {color:colors.highLight} : {color:colors.textMain}}>Back end</div>
       </div>
       <div className="">
-        <ContainerMain>
+        <ContainerMain className={classes.containerProject}>
             {active === "fe" ? <ProjectsFe/> : <ProjectsBe/>}
         </ContainerMain>
       </div>

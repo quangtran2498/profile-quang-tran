@@ -4,11 +4,16 @@ import ContentHome from "../views/contentHome/index";
 import Nav from "../views/nav";
 import { makeStyles, withStyles } from '@mui/styles';
 import { colors } from "../colors";
+
 const useStyles = makeStyles((theme) => {
   return {
     containerHome: {
       ...theme.custom?.flexBox.flexBetweenCenter,
-      width:"calc(100% - 80px)"
+      width:"calc(100% - 80px)",
+      [theme.breakpoints.down("md")]:{
+        width:"100%",
+        display:"block"
+      }
     },
     bg: {
       position: "fixed",
@@ -19,6 +24,9 @@ const useStyles = makeStyles((theme) => {
       top: "-50%",
       background: colors.highLight,
       zIndex: "-1",
+      [theme.breakpoints.down("md")]:{
+        display:"none"
+      }
     },
   };
 });
@@ -28,9 +36,8 @@ const Home = () => {
     const elementImage = document.querySelector(".width-image")
     setWidthImage(elementImage?.clientWidth)
  },[])
+   
   const classes = useStyles();
-  console.log(widthImage,"123");
-  
   return (
     <>
       <div className={classes.containerHome}>

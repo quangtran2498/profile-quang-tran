@@ -9,9 +9,9 @@ const useStyles = makeStyles((theme) => {
       fontWeight: 700,
       textTransform: "uppercase",
       textAlign: "center",
-      paddingTop: "50px",
+      paddingTop: "30px",
       color: colors.textMain,
-      marginBottom: "50px",
+      marginBottom: "20px",
     },
   };
 });

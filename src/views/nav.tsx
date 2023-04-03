@@ -20,6 +20,19 @@ const useStyles = makeStyles((theme) => {
       top: 0,
       ...theme.custom?.flexBox.flexAlignItemsCenter,
       height: "100vh",
+      [theme.breakpoints.down("md")]: {
+        width: "100%",
+        bottom: 0,
+        height: "max-content",
+        top: "unset",
+      },
+    },
+    contentNav: {
+      [theme.breakpoints.down("md")]: {
+        display: "flex",
+        width: "100%",
+        justifyContent: "space-evenly",
+      },
     },
     containerNavSub: {
       ...theme.custom?.flexBox.flexBetweenCenter,
@@ -51,6 +64,7 @@ const useStyles = makeStyles((theme) => {
         "& div": {
           background: "#ffb400",
           transform: "translateX(0)",
+          color: colors.white,
         },
         "& span": {
           display: "block",
@@ -64,6 +78,9 @@ const useStyles = makeStyles((theme) => {
         height: "150%",
         top: 0,
         left: "-100px",
+        [theme.breakpoints.down("md")]: {
+          display: "none",
+        },
       },
     },
     catalogHover: {
@@ -77,11 +94,14 @@ const useStyles = makeStyles((theme) => {
       right: 27,
       ...theme.custom?.flexBox.flexAlignItemsCenter,
       transition: "all 0.4s",
-      color: "#fff",
+      color: "transparent",
       fontWeight: 600,
       textTransform: "uppercase",
       fontSize: "15px",
       transform: "translateX(12%)",
+      [theme.breakpoints.down("md")]: {
+        display: "none",
+      },
     },
     containerLanguage: {
       position: "absolute",
@@ -91,7 +111,6 @@ const useStyles = makeStyles((theme) => {
       bottom: "-70px",
       display: "none",
       borderRadius: "8px",
-
     },
     languageItem: {
       padding: "6px 60px 6px 10px",
@@ -111,8 +130,6 @@ const useStyles = makeStyles((theme) => {
 //   }
 // `;
 const Nav = () => {
-  const [showLanguage, setShowLanguage] = React.useState<boolean>(false);
-  const [highLightPage, setHighLightPage] = React.useState<string>("/");
   const navigate = useNavigate();
   const { i18n, t } = useTranslation();
   const { hover, setHover } = useCheckHoverIconCatalog();
@@ -120,19 +137,15 @@ const Nav = () => {
   const changeLanguage = (e: MouseEvent | any, language: string) => {
     e.stopPropagation();
     i18n.changeLanguage(language);
-    setShowLanguage(false);
     setHover(null);
   };
-  console.log(highLightPage, "highLightPage");
-
   const onHanldeCatalog = (path: string) => {
     navigate(path);
-    setHighLightPage(path);
   };
 
   return (
     <div className={classes.containerNav}>
-      <div className="">
+      <div className={classes.contentNav}>
         <div
           className={classes.catalogItem}
           onMouseMove={() => setHover(1)}
@@ -181,7 +194,7 @@ const Nav = () => {
           />
           <div className={classes.catalogHover}>{t(textI18n.projects)}</div>
         </div>
-        <div
+        {/* <div
           className={classes.catalogItem}
           onMouseMove={() => setHover(4)}
           onMouseOut={() => setHover(null)}
@@ -212,13 +225,11 @@ const Nav = () => {
             highLightIcon={pathRouter.blog === window.location.pathname}
           />
           <div className={classes.catalogHover}>{t(textI18n.blog)}</div>
-        </div>
+        </div> */}
         <div
           className={classes.catalogItem}
           onMouseMove={() => setHover(6)}
           onMouseOut={() => setHover(null)}
-          onClick={() => setShowLanguage(true)}
-          // style={highLightPage === window.location.pathname ? {background:colors.highLight} : {}}
         >
           <icons.language2 />
           <div className={classes.catalogHover}>{t(textI18n.language)}</div>

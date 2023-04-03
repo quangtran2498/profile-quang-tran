@@ -7,12 +7,27 @@ import { Route, Routes } from "react-router-dom";
 import { routesPage } from "./routes";
 import ProvidersCheckHoverIconCatalog from "./providers/hoverIconCatalog";
 import Nav from "./views/nav";
+import { makeStyles } from "@mui/styles";
+const useStyles = makeStyles((theme) => {
+  return {
+    containerApp: {
+      display: "flex",
+      justifyContent: "space-between",
+      alignItems: "center",
+      [theme.breakpoints.down("md")]:{
+         display: "block",
+      }
+    },
+  };
+});
 function App() {
   PopupService.instance = useRef<GlobalPopupConfirmRef | any>(null);
+  const classes = useStyles()
+
   return (
     <ProvidersCheckHoverIconCatalog>
       <div className="App">
-        <div className="" style={{display:"flex",justifyContent:"space-between",alignItems:"center"}}>
+        <div className={classes.containerApp}>
           <Routes>
             {routesPage.map((route) => (
               <Route

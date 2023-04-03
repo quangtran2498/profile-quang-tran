@@ -10,6 +10,7 @@ import SkillsLanguage from "../views/skills/index";
 import { monthExperienceFe, monthExperienceBe } from "../contants/date";
 import Ckeditor from "../views/ckeditor";
 import TextHeader from "../components/textHeader/index";
+import TextTitle from '../components/textTitle/index';
 const useStyles = makeStyles((theme) => {
   return {
     containerAbout: {
@@ -17,14 +18,26 @@ const useStyles = makeStyles((theme) => {
     },
     containerContent: {
       ...theme.custom?.flexBox.flexBetweenCenter,
+      [theme.breakpoints.down("md")]: {
+        display: "block",
+        width: "100%",
+      },
     },
     row: {
       width: "48%",
+      [theme.breakpoints.down("md")]: {
+        width: "100%",
+      },
     },
     containerInfo: {
       ...theme.custom?.flexBox.flexBetweenCenter,
       marginBottom: "36px",
       maxWidth: "500px",
+      [theme.breakpoints.down("md")]: {
+        maxWidth: "100%",
+        display: "block",
+
+      },
     },
     imageMe: {
       borderRadius: "12px",

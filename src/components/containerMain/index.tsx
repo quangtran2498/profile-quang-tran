@@ -2,6 +2,7 @@ import { makeStyles } from "@mui/styles";
 import React from "react";
 interface PropsI {
   children: React.ReactNode;
+  className?:string
 }
 const useStyles = makeStyles((theme) => {
   return {
@@ -11,9 +12,9 @@ const useStyles = makeStyles((theme) => {
     },
   };
 });
-const ContainerMain = ({ children }: PropsI) => {
+const ContainerMain = ({ children,className }: PropsI) => {
   const classes = useStyles();
-  return <div className={classes.styleDefault}>{children}</div>;
+  return <div className={`${classes.styleDefault} ${className}`}>{children}</div>;
 };
 
 export default ContainerMain;
